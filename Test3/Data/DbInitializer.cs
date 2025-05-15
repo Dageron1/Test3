@@ -17,13 +17,15 @@ public class DbInitializer : IDbInitializer
         {
             if (!await _context.Users.AnyAsync())
             {
-                await _context.Users.AddRangeAsync(UserSeeder.SeedUsers());
+                var users = await UserSeeder.LoadUsersFromJsonAsync("Data/users.json");
+                await _context.Users.AddRangeAsync(users);
                 await _context.SaveChangesAsync();
             }
 
             if (!await _context.UserLogs.AnyAsync())
             {
-                await _context.UserLogs.AddRangeAsync(LogSeeder.SeedLogs());
+                var logs = await LogSeeder.LoadLogsFromJsonAsync("Data/userLogs.json");
+                await _context.UserLogs.AddRangeAsync(logs);
                 await _context.SaveChangesAsync();
             }
         }

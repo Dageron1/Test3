@@ -15,4 +15,16 @@ public class SystemUserLogsCollection : ISystemUserLogsCollection
             .Select(log => log.Description)
             .ToList();
     }
+
+    //public SystemUserLogsCollection(UserLogsDbContext context)
+    //{
+    //    Logs = context.UserLogs
+    //        .Join(context.Users,
+    //            log => log.UserId,
+    //            user => user.Id,
+    //            (log, user) => new { user.FirstName, log.Description })
+    //        .Where(x => x.FirstName == "SYSTEM USER")
+    //        .Select(x => x.Description)
+    //        .ToList();
+    //}
 }
